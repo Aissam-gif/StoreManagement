@@ -18,56 +18,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AppController {
 
-	@Autowired
-	private UserService service;
-	
 	@GetMapping("")
-	public String viewHomePage() {
+	public String viewIndexPage() {
 		return "index";
 	}
-	
-	@GetMapping("/register")
-	public String showRegistrationForm(Model model) {
-		model.addAttribute("user", new User());
-		
-		return "signup_form";
-	}
-	
-	@PostMapping("/process_register")
-	public String processRegister(User user, HttpServletRequest request) 
-			throws UnsupportedEncodingException, MessagingException {
-		service.register(user, getSiteURL(request));		
-		return "register_success";
-	}
-	
-	@GetMapping("/users")
-	public String listUsers(Model model) {
-		List<User> listUsers = service.listAll();
-		model.addAttribute("listUsers", listUsers);
-		
-		return "users";
-	}
-	
-	private String getSiteURL(HttpServletRequest request) {
-		String siteURL = request.getRequestURL().toString();
-		return siteURL.replace(request.getServletPath(), "");
-	}	
-	
-	@GetMapping("/verify")
-	public String verifyUser(@Param("code") String code) {
-		if (service.verify(code)) {
-			return "verify_success";
-		} else {
-			return "verify_fail";
-		}
+
+	@GetMapping("/home")
+	public String viewHomePage() {
+		return "home";
 	}
 
-	@GetMapping("/verify-manager")
-	public String verifyManager(@Param("code") String code) {
-		if (service.verify(code)) {
-			return "verify_success";
-		} else {
-			return "verify_fail";
-		}
+	@GetMapping("/contact")
+	public String viewContactPage() {
+		return "contact";
 	}
+
+	@GetMapping("/about")
+	public String viewAboutPage() {
+		return "about";
+	}
+
 }

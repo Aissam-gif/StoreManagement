@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Contact</title>
+  <th:block th:include="layouts/header.html :: headerfiles"></th:block>
+</head>
+<body>
+<div th:replace="layouts/navbar :: navbar"></div>
+
+<div class="py-5 text-center text-white bg-primary fill-body">
+  <div class="container py-5">
+    <div class="row py-5">
+      <div class="mx-auto col-lg-10">
+        <h1 class="display-4 mb-4 ">Contact Page</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="layouts/header :: js-include"></div>
+</body>
+</html>
