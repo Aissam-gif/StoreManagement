@@ -1,4 +1,4 @@
-package net.codejava.config;
+package net.codejava.service;
 
 import java.util.ArrayList;
 import java.util.Collection;

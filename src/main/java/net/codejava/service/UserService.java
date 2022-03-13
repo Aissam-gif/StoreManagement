@@ -51,7 +51,14 @@ public class UserService {
 		addRoleToUser(user.getEmail(),"ROLE_USER");
 		sendVerificationEmail(user, siteURL);
 	}
-	
+
+	public void registerUser(User user, String siteURL){
+		String encodedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
+		repo.save(user);
+	}
+
+
 	private void sendVerificationEmail(User user, String siteURL) 
 			throws MessagingException, UnsupportedEncodingException {
 		String toAddress = user.getEmail();
