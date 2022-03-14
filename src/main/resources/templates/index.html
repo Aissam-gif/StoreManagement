@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<title>Welcome to Home Page</title>
-	<th:block th:include="layouts/header.html :: headerfiles"></th:block>
+<head th:replace="layouts/header :: headerfiles(~{::title}, ~{::link})">
+
+	<title>Welcome Page</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
+	<script th:src="@{js/index.js}" type="text/javascript"></script>
+
 </head>
 <body>
 	<div th:replace="layouts/navbar :: navbar"></div>
@@ -20,6 +23,5 @@
 			</div>
 		</div>
 	</div>
-	<div th:replace="layouts/header :: js-include"></div>
 </body>
 </html>

@@ -30,18 +30,8 @@ public class RegistrationController {
     public String showLoginForm() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            String authuu = "";
-            for (GrantedAuthority a: auth.getAuthorities()) {
-                if(a.getAuthority().equals("ROLE_USER")){
-                    return "redirect:/home";
-                }else if(a.getAuthority().equals("ROLE_ADMIN")){
-                    return "redirect:/admin";
-                }
-                else if(a.getAuthority().equals("ROLE_MANAGER")){
-                    return "redirect:/manager";
-                }
-            }
+        if (auth != null && !(auth instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/home";
         }
             return "login_form";
     }
@@ -49,8 +39,11 @@ public class RegistrationController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && !(auth instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/home";
+        }
         model.addAttribute("user", new User());
-
         return "signup_form";
     }
 
