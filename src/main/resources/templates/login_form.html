@@ -9,8 +9,18 @@
 </head>
 <body>
 <div th:replace="layouts/navbar :: navbar"></div>
+
+
+
 <form th:action="@{/login}"
       method="post" style="max-width: 600px; margin: 0 auto;">
+
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <div th:if="${param.error}" class="alert alert-success text-center">
+        <p>[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+    </div>
     <div class="m-3">
         <div class="form-group row">
             <label class="col-4 col-form-label">E-mail: </label>
