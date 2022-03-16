@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layouts/header :: headerfiles(~{::title}, ~{::link})">
+<head th:replace="layouts/header :: headerfiles(~{::title}, ~{::link}, ~{::script})">
 
 	<title>Welcome Page</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
-	<script th:src="@{js/index.js}" type="text/javascript"></script>
+	<script th:src="@{/js/index.js}" type="text/javascript"></script>
 
 </head>
 <body>
