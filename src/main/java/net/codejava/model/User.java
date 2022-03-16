@@ -33,10 +33,22 @@ public class User {
 	
 	@Column(name = "verification_code", length = 64)
 	private String verificationCode;
-	
+
 	private boolean enabled;
-	@ManyToMany(fetch = FetchType.EAGER)
-	private Collection<Role> roles = new ArrayList<>();
+	/*
+		This role can be on mulitple users
+	 */
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+	private Role role;
+
+	/*
+		Multiple managers can have this category
+	 */
+	@ManyToOne
+	@JoinColumn(name = "category_id", nullable = true)
+	private Category category;
+
 
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
