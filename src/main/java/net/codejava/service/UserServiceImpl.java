@@ -124,6 +124,6 @@ public class UserServiceImpl implements UserService {
 		User user = repo.findByEmail(email);
 		Role role = roleRepository.findByName(roleName);
 		log.info("Adding role {} to user {} database", role.getName(), user.getEmail());
-		user.getRoles().add(role);
+		user.setRole(role);
 	}
 }

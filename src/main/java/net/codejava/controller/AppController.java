@@ -34,4 +34,9 @@ public class AppController {
 		return "about";
 	}
 
+	@GetMapping("/403")
+	public String viewDeniedPage() {
+		return "redirect:/home";
+	}
+
 }
