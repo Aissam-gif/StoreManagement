@@ -5,28 +5,43 @@
 
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/card.css}"/>
     <script th:src="@{js/index.js}" type="text/javascript"></script>
 
 </head>
 <body>
 <div th:replace="layouts/navbar :: navbar"></div>
 
-<div class="py-5 text-center text-white bg-primary fill-body">
+<div class="py-5 text-center text-white bg-primary fill-body" sec:authorize="hasRole('ROLE_ADMIN')">
     <div class="container py-5">
         <div class="row py-5">
             <div class="mx-auto col-lg-10">
                 <h1 class="display-4 mb-4 "> Welcome <span sec:authentication="name"></span> </h1>
                 <p class="lead mb-5">
-                <div sec:authorize="hasRole('ROLE_ADMIN')">
                     Start Admin
-                </div>
-                <div sec:authorize="hasRole('ROLE_USER')">
-                    Start User
-                </div>
                 </p>
             </div>
         </div>
     </div>
+</div>
+
+<div sec:authorize="hasRole('ROLE_USER')">
+    <div class="py-5 text-center text-white">
+    <div class="container">
+        <th:block th:each="i: ${#numbers.sequence(0, 9 - 1)}">
+            <div class="row pb-5" >
+                <div class="col">
+                    <div th:replace="layouts/card :: card"></div>
+                </div>
+                <div class="col">
+                    <div th:replace="layouts/card :: card"></div>
+                </div>
+                <div class="w-100"></div>
+            </div>
+        </th:block>
+
+    </div>
+</div>
 </div>
 </body>
 </html>
