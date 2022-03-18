@@ -60,7 +60,6 @@ public class UserServiceImpl implements UserService {
 			repo.save(user);
 			addRoleToUser(user.getEmail(),"ROLE_USER");
 		}
-
 	}
 
 	@Override
