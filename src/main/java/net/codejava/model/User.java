@@ -42,12 +42,6 @@ public class User {
 	@JoinColumn(name = "role_id")
 	private Role role;
 
-	/*
-		Multiple managers can have this category
-	 */
-	@ManyToOne
-	@JoinColumn(name = "category_id", nullable = true)
-	private Category category;
 
 
 	public String getFullName() {

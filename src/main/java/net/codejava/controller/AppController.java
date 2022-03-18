@@ -1,42 +1,36 @@
 package net.codejava.controller;
 
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AppController {
 
-	@GetMapping("")
-	public String viewIndexPage() {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    @GetMapping("/home")
+    public String viewHomePage() {
+        return "home";
+    }
 
-		if (auth != null && !(auth instanceof AnonymousAuthenticationToken)) {
-			return "redirect:/home";
-		}
-		return "index";
-	}
+    @GetMapping("/profile")
+    public String viewProfilePage() {
+        return "profile";
+    }
 
-	@GetMapping("/home")
-	public String viewHomePage() {
-		return "home";
-	}
+    @PostMapping("/profile")
+    public String updateProfile() {
+        return "";
+    }
 
-	@GetMapping("/contact")
-	public String viewContactPage() {
-		return "contact";
-	}
+    @GetMapping("/403")
+    public String viewDeniedPage() {
+        return "redirect:/home";
+    }
 
-	@GetMapping("/about")
-	public String viewAboutPage() {
-		return "about";
-	}
-
-	@GetMapping("/403")
-	public String viewDeniedPage() {
-		return "redirect:/home";
-	}
+    @GetMapping("/404")
+    public String viewNotFoundPage() {
+        return "redirect:/home";
+    }
 
 }

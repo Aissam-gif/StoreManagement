@@ -1,4 +1,4 @@
-package net.codejava.service;
+package net.codejava.config;
 
 import lombok.extern.slf4j.Slf4j;
 import net.codejava.model.User;

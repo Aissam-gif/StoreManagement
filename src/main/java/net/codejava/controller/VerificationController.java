@@ -20,32 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 @Controller @Slf4j
-public class RegistrationController {
+public class VerificationController {
     @Autowired
     private UserService  service;
-
-    @GetMapping("/login")
-    public String showLoginForm() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        if (auth != null && !(auth instanceof AnonymousAuthenticationToken)) {
-            return "redirect:/home";
-        }
-
-            return "login_form";
-    }
-
-
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && !(auth instanceof AnonymousAuthenticationToken)) {
-            return "redirect:/home";
-        }
-        model.addAttribute("user", new User());
-        return "signup_form";
-    }
-
 
     @PostMapping("/process_register")
     public String processRegister(User user, HttpServletRequest request, RedirectAttributes ra)
@@ -66,15 +43,6 @@ public class RegistrationController {
             return "redirect:/register";
         }
 
-    }
-
-    @GetMapping("/verify-manager")
-    public String verifyManager(@Param("code") String code) {
-        if (service.verify(code)) {
-            return "verify_success";
-        } else {
-            return "verify_fail";
-        }
     }
 
     private String getSiteURL(HttpServletRequest request) {
