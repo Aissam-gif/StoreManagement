@@ -26,13 +26,7 @@ public class Product {
     private BigDecimal price;
     private int quantity;
 
-    
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "product_has_category",
-            joinColumns = { @JoinColumn(name = "product_id") },
-            inverseJoinColumns = { @JoinColumn(name = "category_id") }
-    )
-    Set<Category> categories = new HashSet<>();
+    @ManyToOne(cascade = { CascadeType.ALL })
+    private Category category;
 
 }

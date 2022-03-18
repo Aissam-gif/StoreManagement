@@ -1,9 +1,7 @@
 package net.codejava.config;
 
-import javax.sql.DataSource;
-
-import net.codejava.service.CustomUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.codejava.token.ITokenVerification;
+import net.codejava.token.TokenVerification;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -18,17 +16,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private DataSource dataSource;
 
-	@Autowired
-	SimpleAuthenticationSuccessHandler successHandler;
-	
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new CustomUserDetailsService();
 	}
-	
+
+	@Bean
+	public ITokenVerification tokenVerification(){
+		return new TokenVerification();
+	}
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -51,9 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/home").hasAnyRole("USER","ADMIN","MANAGER")
+			.antMatchers("/home").hasAnyRole("USER","ADMIN")
 			.antMatchers("/admin").hasRole("ADMIN")
-			.antMatchers("/manager").hasRole("MANAGER")
 			.and()
 			.formLogin().loginPage("/login")
 				.usernameParameter("email")

@@ -21,16 +21,8 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    /*
-        One Category can be managed by many users
-     */
-    @OneToMany
-    private List<User> users;
 
-    /*
-    @ManyToMany(mappedBy = "categories")
-    private Set<Product> products = new HashSet<>();
-
-     */
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="category")
+    private Set<Product> products;
 
 }

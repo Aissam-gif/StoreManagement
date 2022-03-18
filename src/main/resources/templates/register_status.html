@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="layouts/header :: headerfiles(~{::title}, ~{::link})">
+<head th:replace="layouts/header :: headerfiles(~{::title}, ~{::link}, ~{::script})">
 
-	<title>Home Page</title>
+	<title>Welcome Page</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
-	<script th:src="@{js/index.js}" type="text/javascript"></script>
+	<script th:src="@{/js/index.js}" type="text/javascript"></script>
 
 </head>
 <body>
-
-
 
 	<div class="container text-center alert alert-success">
 		<h3>You have signed up successfully!</h3>
