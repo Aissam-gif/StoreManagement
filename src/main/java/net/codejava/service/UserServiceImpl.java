@@ -69,7 +69,6 @@ public class UserServiceImpl implements UserService {
 		repo.save(user);
 	}
 
-
 	@Override
 	public boolean verify(String verificationCode) {
 		User user = repo.findByVerificationCode(verificationCode);

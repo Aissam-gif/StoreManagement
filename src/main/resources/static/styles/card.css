@@ -7,7 +7,7 @@ body {
     font-family: "Raleway";
 }
 .card {
-    width: 650px;
+    width: 100%;
     position: relative;
     flex-direction: row!important;
     background: white;
@@ -100,7 +100,11 @@ body {
     cursor: pointer;
 }
 
-
+.card .description button:nth-child(2):hover {
+    border: 1px solid #daa6a6;
+    color: #daa6a6;
+    cursor: pointer;
+}
     .container {
         max-width: 100%!important;
     }

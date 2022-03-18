@@ -92,7 +92,6 @@ public class EmailSender implements IEmailSender{
                 "\n" +
                 "</div></div>";
 
-
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
