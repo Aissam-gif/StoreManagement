@@ -60,7 +60,6 @@ public class UserServiceImpl implements UserService {
 			repo.save(user);
 			addRoleToUser(user.getEmail(),"ROLE_USER");
 		}
-
 	}
 
 	@Override
@@ -69,6 +68,7 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(encodedPassword);
 		repo.save(user);
 	}
+
 
 	@Override
 	public boolean verify(String verificationCode) {
