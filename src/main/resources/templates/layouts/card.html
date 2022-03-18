@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -14,8 +15,11 @@
         <h4>Popular House Plant</h4>
         <h1>$18</h1>
         <p>Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.</p>
-        <button>Add to Cart</button>
-        <button>Wishlist</button>
+        <button sec:authorize="hasRole('ROLE_USER')">Add to Cart</button>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <button>Edit</button>
+            <button>Delete</button>
+        </div>
     </div>
 </div>
 </body>
