@@ -8,7 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public interface UserService {
-    List<User> listAll();
+    List<User> getUsers();
 
     void register(User user, String siteURL)
             throws UnsupportedEncodingException, MessagingException;

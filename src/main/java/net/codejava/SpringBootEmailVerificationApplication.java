@@ -2,6 +2,7 @@ package net.codejava;
 
 import net.codejava.model.Role;
 import net.codejava.model.User;
+import net.codejava.service.CategoryService;
 import net.codejava.service.UserService;
 import net.codejava.service.UserServiceImpl;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +19,8 @@ public class SpringBootEmailVerificationApplication {
 		SpringApplication.run(SpringBootEmailVerificationApplication.class, args);
 	}
 	@Bean
-	CommandLineRunner run(UserService userServiceImpl) {
+	CommandLineRunner run(UserService userServiceImpl, CategoryService categoryService) {
+
 		return args -> {
 			userServiceImpl.saveRole(new Role(null,"ROLE_USER",null));
 			userServiceImpl.saveRole(new Role(null,"ROLE_ADMIN",null));
@@ -28,6 +30,10 @@ public class SpringBootEmailVerificationApplication {
 
 			userServiceImpl.addRoleToUser("said@user.com","ROLE_USER");
 			userServiceImpl.addRoleToUser("said@admin.com","ROLE_ADMIN");
+
+			categoryService.saveCategory("Money tree");
+			categoryService.saveCategory("Fiddle leaf fig");
+			categoryService.saveCategory("Rubber plant");
 		};
 	}
 }

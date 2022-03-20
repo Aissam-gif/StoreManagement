@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 	private ITokenVerification tokenVerification;
 
 	@Override
-	public List<User> listAll() {
+	public List<User> getUsers() {
 		return repo.findAll();
 	}
 	
