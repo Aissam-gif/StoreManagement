@@ -43,14 +43,6 @@ L239.77,215.555L347.383,49.998l144.717,72.359l-26.387,45.446c-2.299,3.961-0.952,
           </a>
         </li>
 
-        <!-- Users, Categories (Admin) -->
-        <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/about') ? 'active':''}"
-            class="nav-item px-lg-2">
-          <a class="nav-link" th:href="@{/admin/users}" href="#">
-            <span class="d-inline-block d-lg-none icon-width">
-              <i class="far fa-user"></i></span>Clients
-          </a>
-        </li>
         <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/about') ? 'active':''}"
             class="nav-item px-lg-2">
           <a class="nav-link" th:href="@{/admin/categories}" href="#">
@@ -98,7 +90,7 @@ L239.77,215.555L347.383,49.998l144.717,72.359l-26.387,45.446c-2.299,3.961-0.952,
           </a>
 
           <div class="dropdown-menu dropdown-menu-right dropdown-unique" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a class="dropdown-item" th:href="@{/profile}"><i class="fas fa-cog"></i> Settings</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" th:href="@{/logout}"><i class="fas fa-power-off"></i> Logout</a>
           </div>

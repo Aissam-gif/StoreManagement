@@ -14,21 +14,28 @@
 
 <div>
     <div class="py-5 text-center text-white">
-    <div class="container">
-        <th:block th:each="i: ${#numbers.sequence(0, 9 - 1)}">
-            <div class="row pb-5" >
-                <div class="col">
-                    <div th:replace="layouts/card :: card"></div>
+    <div class="container justify-content-center">
+        <div class="row pb-5">
+            <th:block th:each="product: ${products}">
+                <div class="col pb-5">
+                    <div th:replace="layouts/card :: card(${product})"></div>
                 </div>
-                <div class="col">
-                    <div th:replace="layouts/card :: card"></div>
-                </div>
-                <div class="w-100"></div>
-            </div>
-        </th:block>
+            </th:block>
+        </div>
 
     </div>
 </div>
 </div>
+
+    <nav aria-label="Page navigation example">
+        Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
+        &nbsp; &nbsp; - &nbsp;
+        <ul class="pagination justify-content-center" th:each="i: ${#numbers.sequence(1, totalPages)}">
+            <li class="page-item">
+                <a class="page-link" th:href="@{'/admin/products/' + ${i}}">[[${i}]]</a>
+            </li>
+        </ul>
+    </nav>
+
 </body>
 </html>

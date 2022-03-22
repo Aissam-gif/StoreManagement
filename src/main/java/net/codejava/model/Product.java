@@ -17,7 +17,8 @@ import java.util.Set;
 @Data
 public class Product {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
