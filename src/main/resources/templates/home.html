@@ -28,19 +28,32 @@
 <div sec:authorize="hasRole('ROLE_USER')">
     <div class="py-5 text-center text-white">
     <div class="container">
-        <th:block th:each="i: ${#numbers.sequence(0, 9 - 1)}">
+        <th:block th:each="product: ${products}">
             <div class="row pb-5" >
                 <div class="col">
-                    <div th:replace="layouts/card :: card"></div>
+                    <div th:replace="layouts/card :: card(${product})"></div>
                 </div>
                 <div class="col">
-                    <div th:replace="layouts/card :: card"></div>
+                    <div th:replace="layouts/card :: card(${product})"></div>
                 </div>
                 <div class="w-100"></div>
             </div>
         </th:block>
 
     </div>
+
+        <nav aria-label="Page navigation example">
+            Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
+            &nbsp; &nbsp; - &nbsp;
+            <div class="pagination-container">
+                <ul class="pagination " th:each="i: ${#numbers.sequence(1, totalPages)}">
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{'/admin/products/' + ${i}}">[[${i}]]</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
 </div>
 </div>
 </body>

@@ -39,7 +39,7 @@ public class AdminController {
 
     @GetMapping("/products/{pageNumber}")
     public String showProductsByPage(Model model, @PathVariable("pageNumber") int currentPage){
-        Page<Product> page =productService.findPage(currentPage);
+        Page<Product> page = productService.findPage(currentPage);
         int totalPages = page.getTotalPages();
         long totalItems = page.getTotalElements();
         List<Product> productList = page.getContent();
