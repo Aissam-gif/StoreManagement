@@ -100,12 +100,6 @@ public class AdminController {
         return "redirect:categories";
     }
 
-    @GetMapping("/saveCategory")
-    public String saveCategory(Model model) {
-        model.addAttribute("category", new Category());
-        return "category/category_form";
-    }
-
     @GetMapping("/category/delete/{id}")
     public String deleteCategory(@PathVariable("id") Long id, RedirectAttributes ra) {
         try {

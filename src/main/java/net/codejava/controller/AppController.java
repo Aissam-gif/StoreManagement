@@ -4,6 +4,7 @@ package net.codejava.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.codejava.model.Product;
+import net.codejava.service.CartItemService;
 import net.codejava.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,9 @@ import java.util.List;
 public class AppController {
     @Autowired
     private final ProductService productService;
+    @Autowired
+    private final CartItemService cartItemService;
+
 
     @GetMapping("/home")
     public String viewHomePage(Model model) {
@@ -31,6 +35,7 @@ public class AppController {
         int totalPages = page.getTotalPages();
         long totalItems = page.getTotalElements();
         List<Product> productList = page.getContent();
+        model.addAttribute("cartItemsCount", cartItemService.getItemsCount());
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("totalItems", totalItems);

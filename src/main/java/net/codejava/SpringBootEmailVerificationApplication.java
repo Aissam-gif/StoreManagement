@@ -42,13 +42,13 @@ public class SpringBootEmailVerificationApplication {
 			categoryService.saveCategory("Rubber plant");
 
 
-			productService.addProduct(new Product(null,"Product 1","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 2","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 3","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 4","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 5","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 6","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 7","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
+			productService.addProduct(new Product(null,"Product 1","Produit 1","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
+			productService.addProduct(new Product(null,"Product 2","Product 2","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
+			productService.addProduct(new Product(null,"Product 3","Product 3","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
+			productService.addProduct(new Product(null,"Product 4","Product 4","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
+			productService.addProduct(new Product(null,"Product 5","Product 5","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
+			productService.addProduct(new Product(null,"Product 6","Product 6","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
+			productService.addProduct(new Product(null,"Product 7","Product 7","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
 
 
 		};

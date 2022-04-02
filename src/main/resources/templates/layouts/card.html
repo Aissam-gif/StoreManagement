@@ -18,7 +18,7 @@
         <h1 th:text="${product.quantity}">$18</h1>
         <p  th:text="${product.description}">Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.</p>
         <button sec:authorize="hasRole('ROLE_USER')">
-            <a th:href="@{'/'}">
+            <a th:href="@{'/cart/add/'+${product.id}+'/1'}">
                 Add to Cart
             </a>
         </button>

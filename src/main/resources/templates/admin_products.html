@@ -28,8 +28,8 @@
 </div>
 
     <nav aria-label="Page navigation example">
-        Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
-        &nbsp; &nbsp; - &nbsp;
+        <p class="text-center" style="color: white"> Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
+            &nbsp; &nbsp; - &nbsp;</p>
         <div class="pagination-container">
             <ul class="pagination " th:each="i: ${#numbers.sequence(1, totalPages)}">
                 <li class="page-item">
