@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+
+
     if ($(window).width() > 991) {
         $(".navbar-light .d-menu").hover(
             function () {

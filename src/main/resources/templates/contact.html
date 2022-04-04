@@ -4,17 +4,53 @@
 
   <title>Contact Page</title>
   <link rel="stylesheet" type="text/css" th:href="@{/styles/index.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/contact.css}"/>
   <script th:src="@{js/index.js}" type="text/javascript"></script>
 
 </head>
 <body>
 <div th:replace="layouts/navbar :: navbar"></div>
 
-<div class="py-5 text-center text-white bg-primary fill-body">
-  <div class="container py-5">
-    <div class="row py-5">
-      <div class="mx-auto col-lg-10">
-        <h1 class="display-4 mb-4 ">Contact Page</h1>
+<div class="container">
+  <div class="wrapper">
+    <div class="form">
+      <div class="left-col">
+        <img src="img/ellipse1.png" class="img1" alt="">
+        <h2>Leave us your email and get a BuJo Starter Kit</h2>
+        <div class="bull">
+          <p>BuJo Guide</p>
+          <img src="img/ellipse2.png" class="img2" alt="">
+          <p>printable Calendex</p>
+          <img src="img/ellipse2.png" class="img2" alt="">
+          <p>printable Study Log</p>
+        </div>
+        <div class="soc">
+          <p>follow us & we’ll follow you</p>
+          <ul>
+            <li><a href="#"><img src="img/fb.png" alt=""></a></li>
+            <li><a href="#"><img src="img/Insta.png" alt=""></a></li>
+            <li><a href="#"><img src="img/pinterest.png" alt=""></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="right-col">
+        <h2>Oh yes, you will definetely get it</h2>
+        <form>
+          <div class="result"></div>
+          <div class="form-group">
+            <input id="name" type="text" placeholder="enter your name">
+          </div>
+
+          <div class="form-group">
+            <input id="email" type="email" placeholder="enter your email">
+          </div>
+
+          <div class="form-group">
+            <textarea id="message" name="message" class="form-control" tabindex="4"
+                      placeholder="enter your message" required></textarea>
+          </div>
+          <button id="submit" type="submit">Send me my kit</button>
+        </form>
       </div>
     </div>
   </div>

@@ -20,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public void saveCategory(String categoryName) {
-        categoryRepository.save(new Category(null, categoryName, null));
+        categoryRepository.save(new Category(null, categoryName));
     }
 
     @Override

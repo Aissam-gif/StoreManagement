@@ -8,23 +8,34 @@
 <body>
 <div class="card" th:fragment="card(product)">
     <div class="photo">
-        <img src="https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg" th:src="${product.image}">
+        <img src="https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg" th:src="'data:image/jpeg;base64,'+${product.image}">
     </div>
     <div class="description">
         <h2 th:text="${product.title}">Classic Peace Lily</h2>
-        <h4>Popular House Plant</h4>
-        <!--th:text="${product.category.name}"-->
-        <h1 th:text="${product.price}">$18</h1>
-        <h1 th:text="${product.quantity}">$18</h1>
-        <p  th:text="${product.description}">Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.</p>
-        <button sec:authorize="hasRole('ROLE_USER')">
-            <a th:href="@{'/'}">
-                Add to Cart
-            </a>
-        </button>
+        <h1 th:text="${product.category.name}">Default</h1>
+        <h1 th:text="${'$' + product.price}">$18</h1>
+        <h1 th:text="${'qty. '+product.quantity}">20</h1>
+        <p  th:text="${product.description}">Desc</p>
+        <button sec:authorize="hasRole('ROLE_USER')">Add to Cart</button>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <button>Edit</button>
-            <button><a th:href="@{'/admin/products/delete/'+ ${product.id}}">Delete</a></button>
+            <button class="editBtn" th:href="@{'/admin/products/findOne/'+ ${product.id}}" data-toggle="modal" data-target="#add-product">Edit</button>
+            <button th:href="@{'/admin/products/delete/'+ ${product.id}}" data-toggle="modal" data-target="#confirm-delete">Delete</button>
+        </div>
+    </div>
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="color: grey;">
+                    <p th:text="${'Delete Product :' + product.title}"></p>
+                </div>
+                <div class="modal-body" style="color: grey;">
+                    Are you sure you want to delete this product ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger btn-ok" href="">Delete</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
