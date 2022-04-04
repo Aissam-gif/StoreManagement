@@ -42,13 +42,18 @@ public class SpringBootEmailVerificationApplication {
 			categoryService.saveCategory("Rubber plant");
 
 
-			productService.addProduct(new Product(null,"Product 1","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 2","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 3","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 4","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 5","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 6","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
-			productService.addProduct(new Product(null,"Product 7","Prod de prod","https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg", BigDecimal.valueOf(12.3),10,null));
+			productService.addProduct(new Product(null,"Product 1","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("SAID")));
+			productService.addProduct(new Product(null,"Product 2","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Hamid")));
+			productService.addProduct(new Product(null,"Product 3","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ahmed")));
+			productService.addProduct(new Product(null,"Product 4","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("SAID")));
+			productService.addProduct(new Product(null,"Product 5","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Hamid")));
+			productService.addProduct(new Product(null,"Product 6","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ahmed")));
+			productService.addProduct(new Product(null,"Product 7","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("SAID")));
+			productService.addProduct(new Product(null,"Product 8","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Hamid")));
+			productService.addProduct(new Product(null,"Product 9","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ahmed")));
+
+
+
 
 
 		};

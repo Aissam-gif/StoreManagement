@@ -3,6 +3,7 @@ package net.codejava.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class Product {
     private Long id;
     private String title;
     private String description;
-    @Column(columnDefinition = "MEDIUMBLOB")
+    @Lob
     private String image;
     private BigDecimal price;
     private int quantity;

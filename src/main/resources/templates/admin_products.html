@@ -11,9 +11,15 @@
 </head>
 <body>
 <div th:replace="layouts/navbar :: navbar"></div>
-
+<div class="py-5 text-center">
+    <div class="container">
+        <button type="button" class="btn btn-primary text-white addBtn" data-toggle="modal" data-target="#add-product">
+            Add Product <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
 <div>
-    <div class="py-5 text-center text-white">
+    <div class="text-center text-white">
     <div class="container justify-content-center">
         <div class="row pb-5">
             <th:block th:each="product: ${products}">
@@ -27,15 +33,91 @@
 </div>
 </div>
 
-    <nav aria-label="Page navigation example">
-        Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
-        &nbsp; &nbsp; - &nbsp;
-        <ul class="pagination justify-content-center" th:each="i: ${#numbers.sequence(1, totalPages)}">
-            <li class="page-item">
-                <a class="page-link" th:href="@{'/admin/products/' + ${i}}">[[${i}]]</a>
-            </li>
-        </ul>
-    </nav>
+<div class="container text-center">
+    Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
+    &nbsp;
+    <div class="row justify-content-center text-center justify-content-center ml-1">
+        <div class="col-lg-2 d-flex">
+            <ul class="pagination justify-content-end pt-3 pl-2" th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <li class="page-item">
+                    <a class="page-link" th:href="@{'/admin/products/' + ${i}}">[[${i}]]</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
+<div class="modal fade" id="add-product" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="color: grey;">
+                Add Product
+            </div>
+            <div class="modal-body" style="color: grey;">
+                <form class="eaForm" th:action="@{/admin/products/save}" method="post" th:object="${product}" enctype="multipart/form-data">
+                    <input th:field="*{id}" type="text" id="prod_id" class="form-control" hidden/>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="prod_title">Product title</label>
+                        <input th:field="*{title}" type="text" id="prod_title" class="form-control" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="prod_desc">Product Description</label>
+                        <textarea th:field="*{description}" class="form-control" id="prod_desc" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="prod_img">Product Image</label>
+                        <input th:name="imagefile" type="file" id="prod_img" class="form-control" accept="image/png, image/jpeg" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="prod_price">Product Price ($)</label>
+                        <input th:field="*{price}" type="number" id="prod_price" class="form-control" step="any"/>
+                    </div>
+
+                    <!-- Number input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="prod_qty">Quantity</label>
+                        <input th:field="*{quantity}" type="number" id="prod_qty" class="form-control" />
+                    </div>
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Save Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        console.log(e.relatedTarget.getAttribute('href'));
+        $(this).find('.btn-ok').attr('href', e.relatedTarget.getAttribute('href'));
+    });
+    $('.addBtn,.description .editBtn').on('click', function (event){
+        event.preventDefault();
+        var href = $(this).attr('href');
+        var text = $(this).text();
+        if(text === 'Edit') {
+            $.get(href, function (product, status) {
+                $('.eaForm #prod_id').val(product.id);
+                $('.eaForm #prod_title').val(product.title);
+                $('.eaForm #prod_desc').val(product.description);
+                //$('.eaForm #prod_img').val(product.image);
+                $('.eaForm #prod_price').val(product.price);
+                $('.eaForm #prod_qty').val(product.quantity);
+            });
+            $('.modal #add-product').modal();
+        }else{
+            $('.eaForm #prod_title').val('');
+            $('.eaForm #prod_desc').val('');
+            //$('.eaForm #prod_img').val(product.image);
+            $('.eaForm #prod_price').val('');
+            $('.eaForm #prod_qty').val('');
+            $('.modal #add-product').modal();
+        }
+    });
+</script>
 </body>
 </html>
