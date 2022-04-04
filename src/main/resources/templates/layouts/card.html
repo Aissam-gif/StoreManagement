@@ -16,7 +16,11 @@
         <h1 th:text="${'$' + product.price}">$18</h1>
         <h1 th:text="${'qty. '+product.quantity}">20</h1>
         <p  th:text="${product.description}">Desc</p>
-        <button sec:authorize="hasRole('ROLE_USER')">Add to Cart</button>
+        <button sec:authorize="hasRole('ROLE_USER')">
+            <a th:href="@{'/cart/add/'+${product.id}+'/1'}">
+                Add to Cart
+            </a>
+        </button>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
             <button class="editBtn" th:href="@{'/admin/products/findOne/'+ ${product.id}}" data-toggle="modal" data-target="#add-product">Edit</button>
             <button th:href="@{'/admin/products/delete/'+ ${product.id}}" data-toggle="modal" data-target="#confirm-delete">Delete</button>

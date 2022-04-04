@@ -24,31 +24,32 @@
         </div>
     </div>
 </div>
-
+    <div th:if="${message}" class="alert alert-info text-center" role="alert">
+        [[${message}]]
+    </div>
 <div sec:authorize="hasRole('ROLE_USER')">
-    <div class="py-5 text-center text-white">
-    <div class="container">
-        <th:block th:each="product: ${products}">
-            <div class="row pb-5" >
-                <div class="col">
-                    <div th:replace="layouts/card :: card(${product})"></div>
+    <div>
+        <div class="py-5 text-center text-white">
+            <div class="container justify-content-center">
+                <div class="row pb-5">
+                    <th:block th:each="product: ${products}">
+                        <div class="col pb-5">
+                            <div th:replace="layouts/card :: card(${product})"></div>
+                        </div>
+                    </th:block>
                 </div>
-                <div class="col">
-                    <div th:replace="layouts/card :: card(${product})"></div>
-                </div>
-                <div class="w-100"></div>
-            </div>
-        </th:block>
 
+            </div>
+        </div>
     </div>
 
-        <nav aria-label="Page navigation example">
-            Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
-            &nbsp; &nbsp; - &nbsp;
+        <nav aria-label="Page navigation example center">
+           <p class="text-center" style="color: white"> Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
+               &nbsp; &nbsp; - &nbsp;</p>
             <div class="pagination-container">
                 <ul class="pagination " th:each="i: ${#numbers.sequence(1, totalPages)}">
                     <li class="page-item">
-                        <a class="page-link" th:href="@{'/admin/products/' + ${i}}">[[${i}]]</a>
+                        <a class="page-link" th:href="@{'/home/' + ${i}}">[[${i}]]</a>
                     </li>
                 </ul>
             </div>
