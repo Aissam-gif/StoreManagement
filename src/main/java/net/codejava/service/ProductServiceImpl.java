@@ -9,9 +9,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-@Service @RequiredArgsConstructor
+@Service @RequiredArgsConstructor @Transactional
 public class ProductServiceImpl implements ProductService{
 
     @Autowired
@@ -45,6 +46,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
+        productRepository.getOne(id).setCategory(null);
+        productRepository.deleteProductById(id);
     }
 }

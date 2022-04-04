@@ -11,7 +11,7 @@
 <body class="area">
 <div th:replace="layouts/navbar :: navbar"></div>
 
-<div class="container text-center">
+<div class="container text-center cat-style">
     <div class="center m-5">
         <div class="pb-5"><h2>Product Categories</h2>
             <button id="btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Categorie</button>
@@ -43,7 +43,7 @@
             [[${message}]]
         </div>
         <div th:if="${messageErr}" class="alert alert-danger text-center">
-            [[${message}]]
+            [[${messageErr}]]
         </div>
 
         <table class="table align-middle mb-0 bg-white">

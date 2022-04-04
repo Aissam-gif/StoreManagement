@@ -56,36 +56,23 @@ public class AdminController {
     }
 
     @PostMapping("/products/save")
-    public String addProduct(Product product, @RequestParam("imagefile") MultipartFile file) throws IOException {
-        product.setCategory(categoryService.getCategories().get(1));
-        byte[] bytes = file.getBytes();
-        byte[] encodeBase64 = Base64.encodeBase64(bytes);
-        String base64Encoded = new String(encodeBase64, "UTF-8");
-        product.setImage(base64Encoded);
-        productService.addProduct(product);
-        log.info(product+" "+ file.getOriginalFilename());
+    public String addProduct(Product product, @RequestParam("imagefile") MultipartFile file, RedirectAttributes ra) {
+        try{
+            product.setCategory(categoryService.getCategories().get(1));
+            byte[] bytes = file.getBytes();
+            byte[] encodeBase64 = Base64.encodeBase64(bytes);
+            String base64Encoded = new String(encodeBase64, "UTF-8");
+            product.setImage(base64Encoded);
+            productService.addProduct(product);
+            log.info(product+" "+ file.getOriginalFilename());
+            ra.addFlashAttribute("message", "Product added Successfly");
+        }catch (Exception e){
+            ra.addFlashAttribute("messageErr", "Product deleted Successfly");
+        }
+
         return "redirect:/admin/products";
     }
 
-    private Byte[] convertToBytes(MultipartFile file) throws IOException {
-        Byte[] byteObjects = new Byte[file.getBytes().length];
-        int i = 0;
-        for (byte b : file.getBytes()) {
-            byteObjects[i++] = b;
-        }
-        return byteObjects;
-    }
-
-
-    @GetMapping("/products/update/{id}")
-    public String updateProductForm(@PathVariable("id") Long id, Model model){
-        return "admin_products";
-    }
-
-    @PostMapping("/products/update/{id}")
-    public String updateProduct(@PathVariable("id") Long id, Product product){
-        return "admin_products";
-    }
 
     @GetMapping("/products/delete/{id}")
     public String deleteProduct(@PathVariable("id") Long id, RedirectAttributes ra){
@@ -93,7 +80,7 @@ public class AdminController {
             productService.deleteProduct(id);
             ra.addFlashAttribute("message", "Product deleted Successfly");
         } catch(Exception e) {
-            ra.addFlashAttribute("messageErr", "Something went wrong, Couldn't Delete Product");
+            ra.addFlashAttribute("messageErr", e.getMessage());
         }
         return "redirect:/admin/products";
     }
@@ -128,9 +115,9 @@ public class AdminController {
     public String deleteCategory(@PathVariable("id") Long id, RedirectAttributes ra) {
         try {
             categoryService.deleteCategory(id);
-            ra.addFlashAttribute("message", "Category deleted Successfly");
+            ra.addFlashAttribute("message", "Category deleted Successfully");
         } catch(Exception e) {
-            ra.addFlashAttribute("messageErr", "Something went wrong, Couldn't Delete Category");
+            ra.addFlashAttribute("messageErr", e.getMessage());
         }
         return "redirect:/admin/categories";
     }

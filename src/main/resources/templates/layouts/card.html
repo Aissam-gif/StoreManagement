@@ -17,7 +17,7 @@
         <h1 th:text="${'qty. '+product.quantity}">20</h1>
         <p  th:text="${product.description}">Desc</p>
         <button sec:authorize="hasRole('ROLE_USER')">
-            <a th:href="@{'/cart/add/'+${product.id}+'/1'}">
+            <a th:href="@{'/cart/add/'+${product.id}+'/1'}" class="add-to-cart">
                 Add to Cart
             </a>
         </button>

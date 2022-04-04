@@ -1,11 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,500,700);
-* {
-    box-sizing: border-box;
-}
-body {
-    background: #aedaa6;
-    font-family: "Raleway", serif;
-}
 .row{
     margin-left: 0;
 }
@@ -111,18 +103,27 @@ body {
     cursor: pointer;
 }
 
-.container {
-        max-width: 100%!important;
+.products-style {
+    max-width: 100%!important;
 }
 
-button a {
+button a{
     text-decoration: none;
     color: #515151;
     cursor: pointer;
 }
-
+.add-to-cart{
+    text-decoration: none;
+    color: #515151;
+    cursor: pointer;
+}
 .card .description button:nth-child(2):hover a {
     text-decoration: none;
     color: #daa6a6;
+    cursor: pointer;
+}
+.add-to-cart:hover {
+    text-decoration: none;
+    color: #aedaa6;
     cursor: pointer;
 }

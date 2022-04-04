@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> getProductsByCategory(Category category);
+    void deleteProductsByCategory(Category category);
+    void deleteProductById(Long id);
 }
