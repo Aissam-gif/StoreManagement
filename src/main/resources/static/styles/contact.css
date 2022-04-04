@@ -9,6 +9,42 @@ body{
 input:active, input:focus, textarea:active, textarea:focus {
     outline: none;
 }
+
+.spanner{
+    position:absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display:block;
+    text-align:center;
+    height: 300px;
+    color: #FFF;
+    z-index: 1000;
+    visibility: hidden;
+}
+.overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    visibility: hidden;
+    z-index: 1000;
+}
+.show{
+    visibility: visible;
+}
+
+.spanner, .overlay{
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.spanner.show, .overlay.show {
+    opacity: 1
+}
+
 textarea {
     display: inline !important;
     border: 1px solid #5EB4CB !important;
@@ -81,7 +117,7 @@ ul li{
 }
 
 .wrapper{
-    margin: 60px 0;
+    margin: 60px 0 0 0;
 
 }
 
@@ -93,7 +129,7 @@ ul li{
 
 .left-col{
     width: 40%;
-    padding: 135px 30px 0 30px;
+    padding: 50px 30px 0 30px;
     background: linear-gradient(to bottom, #69B9C4, #91C8EB);
 
 }
@@ -110,16 +146,16 @@ ul li{
     margin-bottom: 10px;
 }
 
-.left-col .bull{
-    margin: 100px 0 0;
-}
-.left-col .bull p{
-    font-size: 20px;
-    color: #fff;
+.left-col .container-img{
+    margin: 50px 0 0;
+    overflow: hidden;
+    resize: both;
 }
 
-.left-col .bull img.img2{
-    margin:25px 0;
+.left-col .container-img img{
+   object-fit: contain;
+    height: 100%;
+    width: 100%;
 }
 
 .left-col .soc{
@@ -146,7 +182,7 @@ ul li{
 
 .right-col{
     width: 60%;
-    padding: 135px 30px 0 30px;
+    padding: 70px 30px 0 30px;
     background: rgba(255, 255, 255, 0.7);
 
 }

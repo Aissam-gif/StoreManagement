@@ -9,51 +9,80 @@
 
 </head>
 <body>
+<div class="overlay"></div>
+<div class="spanner">
+  <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <p>Sending Email...</p>
+</div>
 <div th:replace="layouts/navbar :: navbar"></div>
+
+<div th:if="${(param.success != null) and (param.success[0] == '1')}">
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="myToast"
+  style="position: absolute;left: 50%; margin-left: -82px;">
+    <div class="toast-header">
+      <strong class="mr-auto">Message</strong>
+      <small>1 sec ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Email sent Successfly
+    </div>
+  </div>
+</div>
 
 <div class="container">
   <div class="wrapper">
     <div class="form">
       <div class="left-col">
         <img src="img/ellipse1.png" class="img1" alt="">
-        <h2>Leave us your email and get a BuJo Starter Kit</h2>
-        <div class="bull">
-          <p>BuJo Guide</p>
-          <img src="img/ellipse2.png" class="img2" alt="">
-          <p>printable Calendex</p>
-          <img src="img/ellipse2.png" class="img2" alt="">
-          <p>printable Study Log</p>
+        <h2>Leave us your email Our Support is active 24/7</h2>
+        <div class="container-img">
+         <img th:src="@{/images/support_call.png}">
         </div>
-        <div class="soc">
-          <p>follow us & we’ll follow you</p>
-          <ul>
-            <li><a href="#"><img src="img/fb.png" alt=""></a></li>
-            <li><a href="#"><img src="img/Insta.png" alt=""></a></li>
-            <li><a href="#"><img src="img/pinterest.png" alt=""></a></li>
-          </ul>
-        </div>
+
       </div>
       <div class="right-col">
-        <h2>Oh yes, you will definetely get it</h2>
-        <form>
+        <h2>Get In Touch With Us</h2>
+        <form th:action="@{/sendmail}" method="POST">
           <div class="result"></div>
           <div class="form-group">
-            <input id="name" type="text" placeholder="enter your name">
+            <input id="name" name="name" type="text" placeholder="enter your name">
           </div>
 
           <div class="form-group">
-            <input id="email" type="email" placeholder="enter your email">
+            <input id="email" name="email" type="email" placeholder="enter your email">
           </div>
 
           <div class="form-group">
             <textarea id="message" name="message" class="form-control" tabindex="4"
                       placeholder="enter your message" required></textarea>
           </div>
-          <button id="submit" type="submit">Send me my kit</button>
+          <button id="submit" type="submit">Send us email</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $('#submit').on('click', function(){
+    $("div.spanner").addClass("show");
+    $("div.overlay").addClass("show");
+  });
+  var option = {
+    animation : true,
+    delay : 2000,
+  };
+  window.onload = (event) => {
+    let myAlert = document.getElementById('myToast');
+    if (myAlert) {
+      let bsAlert = new bootstrap.Toast(myAlert, option);
+      bsAlert.show();
+    }
+  };
+</script>
 </body>
 </html>
