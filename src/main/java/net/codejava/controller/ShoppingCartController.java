@@ -53,6 +53,6 @@ public class ShoppingCartController {
         User user = customUserDetails.getUser();
         cartItemService.removeProduct(productId, user);
         ra.addFlashAttribute("message", "Product removed from cart");
-        return "shopping_cart";
+        return "redirect:/cart";
     }
 }
