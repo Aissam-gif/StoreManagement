@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service @RequiredArgsConstructor
 public class CartItemServiceImpl implements CartItemService{
@@ -39,7 +40,13 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Override
     public void removeProduct(Long procutId, User user) {
-
+        Product product = productRepository.findById(procutId)
+                .orElse(null);
+        CartItem cartItem = null;
+        if (product != null ) {
+            cartItem = cartItemRepository.findByUserAndProduct(user, product);
+            cartItemRepository.delete(cartItem);
+        }
     }
 
     @Override
