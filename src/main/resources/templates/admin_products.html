@@ -43,7 +43,7 @@
 </div>
 
 
-<div class="container text-center">
+<div class="container text-center" th:if="${totalItems &gt; 0}">
     Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
     &nbsp;
     <div class="row justify-content-center text-center justify-content-center ml-1">
@@ -84,6 +84,13 @@
                         <input th:name="imagefile" type="file" id="prod_img" class="form-control" accept="image/png, image/jpeg" />
                     </div>
 
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="prod_img">Product Image</label>
+                        <select class="form-control" th:field="*{category}"  id="dropOperator">
+                            <option value="0">select category</option>
+                            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                        </select>
+                    </div>
                     <div class="form-outline mb-4">
                         <label class="form-label" for="prod_price">Product Price ($)</label>
                         <input th:field="*{price}" type="number" id="prod_price" class="form-control" step="any"/>

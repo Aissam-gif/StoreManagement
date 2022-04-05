@@ -42,29 +42,34 @@ public class AdminController {
 
     @GetMapping("/products/{pageNumber}")
     public String showProductsByPage(Model model, @PathVariable("pageNumber") int currentPage){
-        Page<Product> page = productService.findPage(currentPage);
-        int totalPages = page.getTotalPages();
-        long totalItems = page.getTotalElements();
-        List<Product> productList = page.getContent();
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("totalItems", totalItems);
-        model.addAttribute("products", productList);
-        model.addAttribute("product",new Product());
-        log.info("Product List {}", productList.size());
-        return "admin_products";
+        if(currentPage>0){
+            Page<Product> page = productService.findPage(currentPage);
+            if(!page.isEmpty()){
+                List<Category> categories = categoryService.getCategories();
+                int totalPages = page.getTotalPages();
+                long totalItems = page.getTotalElements();
+                List<Product> productList = page.getContent();
+                model.addAttribute("currentPage", currentPage);
+                model.addAttribute("totalPages", totalPages);
+                model.addAttribute("totalItems", totalItems);
+                model.addAttribute("products", productList);
+                model.addAttribute("categories", categories);
+                model.addAttribute("product",new Product());
+                log.info("Product List {}", productList.size());
+                return "admin_products";
+            }
+        }
+        return "redirect:/admin/products";
     }
 
     @PostMapping("/products/save")
     public String addProduct(Product product, @RequestParam("imagefile") MultipartFile file, RedirectAttributes ra) {
         try{
-            product.setCategory(categoryService.getCategories().get(1));
             byte[] bytes = file.getBytes();
             byte[] encodeBase64 = Base64.encodeBase64(bytes);
             String base64Encoded = new String(encodeBase64, "UTF-8");
             product.setImage(base64Encoded);
             productService.addProduct(product);
-            log.info(product+" "+ file.getOriginalFilename());
             ra.addFlashAttribute("message", "Product added Successfly");
         }catch (Exception e){
             ra.addFlashAttribute("messageErr", "Product deleted Successfly");

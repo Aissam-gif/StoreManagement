@@ -31,17 +31,22 @@ public class AppController {
 
     @GetMapping("/home/{pageNumber}")
     public String showProductsByPage(Model model, @PathVariable("pageNumber") int currentPage){
-        Page<Product> page = productService.findPage(currentPage);
-        int totalPages = page.getTotalPages();
-        long totalItems = page.getTotalElements();
-        List<Product> productList = page.getContent();
-        model.addAttribute("cartItemsCount", cartItemService.getItemsCount());
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("totalItems", totalItems);
-        model.addAttribute("products", productList);
-        log.info("Product List {}", productList.size());
-        return "home";
+        if(currentPage>0){
+            Page<Product> page = productService.findPage(currentPage);
+            if(!page.isEmpty()){
+                int totalPages = page.getTotalPages();
+                long totalItems = page.getTotalElements();
+                List<Product> productList = page.getContent();
+                model.addAttribute("cartItemsCount", cartItemService.getItemsCount());
+                model.addAttribute("currentPage", currentPage);
+                model.addAttribute("totalPages", totalPages);
+                model.addAttribute("totalItems", totalItems);
+                model.addAttribute("products", productList);
+                log.info("Product List {}", productList.size());
+                return "home";
+            }
+        }
+        return "redirect:/home";
     }
     @GetMapping("/profile")
     public String viewProfilePage() {
