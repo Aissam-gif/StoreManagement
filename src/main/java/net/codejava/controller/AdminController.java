@@ -65,6 +65,10 @@ public class AdminController {
     @PostMapping("/products/save")
     public String addProduct(Product product, @RequestParam("imagefile") MultipartFile file, RedirectAttributes ra) {
         try{
+            if(product.getCategory()==null){
+                ra.addFlashAttribute("messageErr", "Couldn't Save Product Category Required");
+                return "redirect:/admin/products";
+            }
             byte[] bytes = file.getBytes();
             byte[] encodeBase64 = Base64.encodeBase64(bytes);
             String base64Encoded = new String(encodeBase64, "UTF-8");
@@ -72,7 +76,7 @@ public class AdminController {
             productService.addProduct(product);
             ra.addFlashAttribute("message", "Product added Successfly");
         }catch (Exception e){
-            ra.addFlashAttribute("messageErr", "Product deleted Successfly");
+            ra.addFlashAttribute("messageErr", "Product  not saved");
         }
 
         return "redirect:/admin/products";
