@@ -43,18 +43,22 @@
         </div>
     </div>
 
-        <nav aria-label="Page navigation example center">
-           <p class="text-center" style="color: white"> Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
-               &nbsp; &nbsp; - &nbsp;</p>
-            <div class="pagination-container">
-                <ul class="pagination " th:each="i: ${#numbers.sequence(1, totalPages)}">
+    <div class="container text-center" th:if="${totalItems &gt; 1}">
+        Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
+        &nbsp;
+        <div class="row justify-content-center text-center justify-content-center ml-1">
+            <div class="col-lg-2 d-flex">
+                <ul class="pagination justify-content-end pt-3 pl-2" th:each="i: ${#numbers.sequence(1, totalPages)}">
+
                     <li class="page-item">
-                        <a class="page-link" th:href="@{'/home/' + ${i}}">[[${i}]]</a>
+                        <a class="page-link" th:href="@{'/home' + ${i}}">[[${i}]]</a>
                     </li>
                 </ul>
             </div>
 
-        </nav>
+            </nav>
+        </div>
+    </div>
 </div>
 </div>
 </body>

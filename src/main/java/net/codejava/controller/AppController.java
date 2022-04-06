@@ -55,8 +55,8 @@ public class AppController {
                 model.addAttribute("totalItems", totalItems);
                 model.addAttribute("products", productList);
                 log.info("Product List {}", productList.size());
-                return "home";
             }
+            return "home";
         }
         return "redirect:/home";
     }
@@ -64,7 +64,6 @@ public class AppController {
     public String viewProfilePage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model) {
         log.info("User 1 "+ customUserDetails.getUser().toString());
         model.addAttribute("user",customUserDetails.getUser());
-        model.addAttribute("oldpass", customUserDetails.getUser().getPassword());
         return "profile";
     }
 
@@ -73,21 +72,11 @@ public class AppController {
     public String saveProfile(@ModelAttribute User user, RedirectAttributes ra,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
         user.setEnabled(true);
         user.setRole(customUserDetails.getUser().getRole());
-        if (user.getPassword().equals(customUserDetails.getPassword())) {
-            userService.saveUser(user);
-            return "/profile";
-        }
-        else{
+        if (!user.getPassword().equals(customUserDetails.getPassword())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            userService.saveUser(user);
-            return "redirect:/logout";
         }
-    }
-
-
-    @PostMapping("/profile")
-    public String updateProfile() {
-        return "";
+        userService.saveUser(user);
+        return "redirect:/logout";
     }
 
     @GetMapping("/403")

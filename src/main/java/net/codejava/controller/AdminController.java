@@ -54,10 +54,10 @@ public class AdminController {
                 model.addAttribute("totalItems", totalItems);
                 model.addAttribute("products", productList);
                 model.addAttribute("categories", categories);
-                model.addAttribute("product",new Product());
                 log.info("Product List {}", productList.size());
-                return "admin_products";
             }
+            model.addAttribute("product",new Product());
+            return "admin_products";
         }
         return "redirect:/admin/products";
     }
