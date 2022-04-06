@@ -36,13 +36,17 @@
     margin-right: 10px;
 }
  .card .photo {
-    padding: 30px;
+    padding: 20px;
     width: 45%;
     text-align: center;
     float: left;
+     display: flex;
+     justify-content: center;
+     align-items: center;
 }
 .card .photo img {
     max-height: 240px;
+    max-width: 285px;
 }
  .card .description {
     padding: 30px;

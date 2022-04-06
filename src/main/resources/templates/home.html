@@ -27,10 +27,13 @@
     <div th:if="${message}" class="alert alert-info text-center" role="alert">
         [[${message}]]
     </div>
+<div th:if="${emptyList == 1}" class="text-white text-center">
+    <img th:src="@{images/noitem.png}"/>
+</div>
 <div sec:authorize="hasRole('ROLE_USER')">
     <div>
-        <div class="py-5 text-center text-white">
-            <div class="container justify-content-center">
+        <div class="text-center text-white py-4">
+            <div class="container justify-content-center products-style">
                 <div class="row pb-5">
                     <th:block th:each="product: ${products}">
                         <div class="col pb-5">
@@ -42,6 +45,7 @@
             </div>
         </div>
     </div>
+    </div>
 
     <div class="container text-center" th:if="${totalItems &gt; 1}">
         Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
@@ -51,7 +55,7 @@
                 <ul class="pagination justify-content-end pt-3 pl-2" th:each="i: ${#numbers.sequence(1, totalPages)}">
 
                     <li class="page-item">
-                        <a class="page-link" th:href="@{'/home' + ${i}}">[[${i}]]</a>
+                        <a class="page-link" th:href="@{'/home/' + ${i}}">[[${i}]]</a>
                     </li>
                 </ul>
             </div>

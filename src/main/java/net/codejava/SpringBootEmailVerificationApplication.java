@@ -37,7 +37,7 @@ public class SpringBootEmailVerificationApplication {
 			userServiceImpl.addRoleToUser("said@admin.com","ROLE_ADMIN");
 
 
-			productService.addProduct(new Product(null,"Product 1","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 1")));
+//			productService.addProduct(new Product(null,"Product 1","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 1")));
 			/*productService.addProduct(new Product(null,"Product 2","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 2")));
 			productService.addProduct(new Product(null,"Product 3","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 3")));
 			productService.addProduct(new Product(null,"Product 4","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 4")));
