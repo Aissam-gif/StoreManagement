@@ -19,4 +19,6 @@ public interface UserService {
 
     void addRoleToUser(String email, String roleName);
     boolean verify(String verificationCode);
+
+    User saveUser(User user);
 }

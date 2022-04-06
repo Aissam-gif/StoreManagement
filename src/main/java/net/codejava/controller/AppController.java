@@ -3,16 +3,23 @@ package net.codejava.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.codejava.config.CustomUserDetails;
 import net.codejava.model.Product;
+import net.codejava.model.User;
 import net.codejava.service.CartItemService;
 import net.codejava.service.ProductService;
+import net.codejava.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -23,6 +30,11 @@ public class AppController {
     @Autowired
     private final CartItemService cartItemService;
 
+    @Autowired
+    private final UserService userService;
+
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/home")
     public String viewHomePage(Model model) {
@@ -49,9 +61,29 @@ public class AppController {
         return "redirect:/home";
     }
     @GetMapping("/profile")
-    public String viewProfilePage() {
+    public String viewProfilePage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model) {
+        log.info("User 1 "+ customUserDetails.getUser().toString());
+        model.addAttribute("user",customUserDetails.getUser());
+        model.addAttribute("oldpass", customUserDetails.getUser().getPassword());
         return "profile";
     }
+
+
+    @PostMapping("/profile/save")
+    public String saveProfile(@ModelAttribute User user, RedirectAttributes ra,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        user.setEnabled(true);
+        user.setRole(customUserDetails.getUser().getRole());
+        if (user.getPassword().equals(customUserDetails.getPassword())) {
+            userService.saveUser(user);
+            return "/profile";
+        }
+        else{
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userService.saveUser(user);
+            return "redirect:/logout";
+        }
+    }
+
 
     @PostMapping("/profile")
     public String updateProfile() {

@@ -1,14 +1,10 @@
 package net.codejava.service;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
-import net.codejava.email.EmailSender;
 import net.codejava.email.IEmailSender;
 import net.codejava.model.Role;
 import net.codejava.model.User;
@@ -16,10 +12,6 @@ import net.codejava.repo.RoleRepository;
 import net.codejava.repo.UserRepository;
 import net.codejava.token.ITokenVerification;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.mail.MailException;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -94,5 +86,10 @@ public class UserServiceImpl implements UserService {
 		Role role = roleRepository.findByName(roleName);
 		log.info("Adding role {} to user {} database", role.getName(), user.getEmail());
 		user.setRole(role);
+	}
+
+	@Override
+	public User saveUser(User user) {
+		return repo.save(user);
 	}
 }
