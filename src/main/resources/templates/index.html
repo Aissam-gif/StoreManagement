@@ -10,6 +10,13 @@
 <body class="area">
 	<div th:replace="layouts/navbar :: navbar"></div>
 
+	<div th:if="${message}" class="alert alert-success text-center">
+		[[${message}]]
+	</div>
+	<div th:if="${messageErr}" class="alert alert-danger text-center">
+		[[${messageErr}]]
+	</div>
+
 	<div class="py-5 text-center text-white fill-body">
 		<div class="container py-5">
 			<div class="row py-5">

@@ -10,16 +10,24 @@
 <body class="area">
 <div th:replace="layouts/navbar :: navbar"></div>
 
+
+<div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+</div>
+<div th:if="${messageErr}" class="alert alert-danger text-center">
+    [[${messageErr}]]
+</div>
+
 <div class="container profile-form mx-auto">
     <div class="row">
         <div class="col-md-3 ">
             <div class="list-group ">
-                <a href="#" class="list-group-item list-group-item-action">User Management</a>
-                <a href="#" class="list-group-item list-group-item-action">Settings</a>
+                <a th:href="@{/profile}" class="list-group-item list-group-item-action" th:classappend="${#httpServletRequest.getRequestURI().equals('/profile') ? 'active':''}">User Management</a>
+                <a th:href="@{/profile/settings}" class="list-group-item list-group-item-action" th:classappend="${#httpServletRequest.getRequestURI().equals('/profile/settings') ? 'active':''}">Settings</a>
             </div>
         </div>
         <div class="col-md-9">
-            <div class="card">
+            <div class="card" th:if="${#httpServletRequest.getRequestURI().equals('/profile')}">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -63,13 +71,57 @@
                             </form>
                         </div>
                     </div>
-
+                </div>
+            </div>
+            <div class="card" th:if="${#httpServletRequest.getRequestURI().equals('/profile/settings')}">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Account Settings</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            <label class="form-label">Change Language</label>
+                            <select class="form-control" id="dropOperator">
+                                <option value="1">French</option>
+                                <option value="2">English</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="col-md-12 mt-2">
+                            <button type="button" class="btn btn-danger deleteBtn" th:href="@{'/profile/settings/delete/'}" data-toggle="modal" data-target="#delete-account">
+                                Delete Account <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
+<div class="modal fade" id="delete-account" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="color: grey;">
+                Delete Account
+            </div>
+            <div class="modal-body" style="color: grey;">
+                Are you sure you want to delete your account ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok" href="">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#delete-account').on('show.bs.modal', function(e) {
+        console.log(e.relatedTarget.getAttribute('href'));
+        $(this).find('.btn-ok').attr('href', e.relatedTarget.getAttribute('href'));
+    });
+</script>
 </body>
 </html>

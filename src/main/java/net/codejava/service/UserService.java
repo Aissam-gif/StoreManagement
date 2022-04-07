@@ -20,5 +20,7 @@ public interface UserService {
     void addRoleToUser(String email, String roleName);
     boolean verify(String verificationCode);
 
-    User saveUser(User user);
+    void saveUser(User user);
+
+    void deleteUser(User user);
 }

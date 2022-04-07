@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.codejava.email.IEmailSender;
 import net.codejava.model.Role;
 import net.codejava.model.User;
+import net.codejava.repo.CartItemRepository;
+import net.codejava.repo.ProductRepository;
 import net.codejava.repo.RoleRepository;
 import net.codejava.repo.UserRepository;
 import net.codejava.token.ITokenVerification;
@@ -25,6 +27,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private RoleRepository roleRepository;
+
+	@Autowired
+	private CartItemRepository cartItemRepository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -89,7 +94,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User saveUser(User user) {
-		return repo.save(user);
+	public void saveUser(User user) {
+		repo.save(user);
+	}
+
+	@Override
+	public void deleteUser(User user) {
+		cartItemRepository.deleteCartItemsByUser(user);
+		repo.delete(user);
 	}
 }

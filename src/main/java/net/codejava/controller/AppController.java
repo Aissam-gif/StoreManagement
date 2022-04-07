@@ -67,6 +67,30 @@ public class AppController {
         return "profile";
     }
 
+    @GetMapping("/profile/settings")
+    public String viewSettingsPage(@AuthenticationPrincipal CustomUserDetails customUserDetails, Model model) {
+        model.addAttribute("user",customUserDetails.getUser());
+        return "profile";
+    }
+
+    @GetMapping("/profile/settings/delete")
+    public String deleteAccount(@AuthenticationPrincipal CustomUserDetails customUserDetails, RedirectAttributes ra) {
+        try {
+            log.error("Test1");
+            if(!customUserDetails.getUser().getRole().getName().equals("ROLE_ADMIN")){
+                userService.deleteUser(customUserDetails.getUser());
+                log.error("Test2");
+                ra.addFlashAttribute("message", "Account deleted Successfully");
+            }else {
+                ra.addFlashAttribute("messageErr", "Cannot Delete Admin Account ");
+                log.error("Test3");
+                return "redirect:/profile";
+            }
+        } catch(Exception e) {
+            ra.addFlashAttribute("messageErr", e.getMessage());
+        }
+        return "redirect:/logout";
+    }
 
     @PostMapping("/profile/save")
     public String saveProfile(@ModelAttribute User user, RedirectAttributes ra,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
