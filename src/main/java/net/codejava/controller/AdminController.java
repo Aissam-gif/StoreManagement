@@ -42,10 +42,11 @@ public class AdminController {
 
     @GetMapping("/products/{pageNumber}")
     public String showProductsByPage(Model model, @PathVariable("pageNumber") int currentPage){
+        List<Category> categories = categoryService.getCategories();
+        model.addAttribute("categories", categories);
         if(currentPage>0){
             Page<Product> page = productService.findPage(currentPage);
             if(!page.isEmpty()){
-                List<Category> categories = categoryService.getCategories();
                 int totalPages = page.getTotalPages();
                 long totalItems = page.getTotalElements();
                 List<Product> productList = page.getContent();
@@ -53,7 +54,6 @@ public class AdminController {
                 model.addAttribute("totalPages", totalPages);
                 model.addAttribute("totalItems", totalItems);
                 model.addAttribute("products", productList);
-                model.addAttribute("categories", categories);
                 log.info("Product List {}", productList.size());
             }
             model.addAttribute("product",new Product());

@@ -55,6 +55,8 @@ public class AppController {
                 model.addAttribute("totalItems", totalItems);
                 model.addAttribute("products", productList);
                 log.info("Product List {}", productList.size());
+            } else {
+                model.addAttribute("emptyList", 1);
             }
             return "home";
         }
