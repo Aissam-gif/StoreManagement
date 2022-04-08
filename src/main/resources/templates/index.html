@@ -23,10 +23,10 @@
 				<div class="mx-auto col-lg-10">
 
 					<h1 class="display-4 mb-4 color" th:text="#{greeting}"></h1>
-					<p class="lead mb-5 color">There is nothing more rare, nor more beautiful, than a woman being unapologetically herself; comfortable in her perfect imperfection. To me, that is the true essence of beauty.
+					<p class="lead mb-5 color" th:text="#{lead}">
 					</p>
-					<a th:href="@{/register}" href="#" class="btn btn-lg btn-outline-light mx-1 index-btn">Register Account</a>
-					<a th:href="@{/login}" href="#" class="btn btn-lg btn-outline-light mx-1 index-btn">Log In</a>
+					<a th:href="@{/register}" href="#" class="btn btn-lg btn-outline-light mx-1 index-btn" th:text="#{rgbtn}"></a>
+					<a th:href="@{/login}" href="#" class="btn btn-lg btn-outline-light mx-1 index-btn" th:text="#{logbtn}"></a>
 
 				</div>
 			</div>

@@ -74,7 +74,7 @@ public class AdminController {
             String base64Encoded = new String(encodeBase64, "UTF-8");
             product.setImage(base64Encoded);
             productService.addProduct(product);
-            ra.addFlashAttribute("message", "Product added Successfly");
+            ra.addFlashAttribute("message", "Product added Successfully");
         }catch (Exception e){
             ra.addFlashAttribute("messageErr", "Product  not saved");
         }
@@ -87,7 +87,7 @@ public class AdminController {
     public String deleteProduct(@PathVariable("id") Long id, RedirectAttributes ra){
         try {
             productService.deleteProduct(id);
-            ra.addFlashAttribute("message", "Product deleted Successfly");
+            ra.addFlashAttribute("message", "Product deleted Successfully");
         } catch(Exception e) {
             ra.addFlashAttribute("messageErr", e.getMessage());
         }
@@ -99,12 +99,6 @@ public class AdminController {
         return productService.getProduct(id);
     }
 
-    @GetMapping("/users")
-    public String showManagers(Model model)
-    {
-        model.addAttribute("users", userService.getUsers());
-        return "users";
-    }
 
     @GetMapping("/categories")
     public String addCategory(Model model) {
@@ -116,7 +110,7 @@ public class AdminController {
     public String processCategory(RedirectAttributes ra, @ModelAttribute("category") String category) {
         // TODO:
         categoryService.saveCategory(category);
-        ra.addFlashAttribute("message","Category " + category + " saved Succesfly");
+        ra.addFlashAttribute("message","Category " + category + " saved Successfully");
         return "redirect:categories";
     }
 
