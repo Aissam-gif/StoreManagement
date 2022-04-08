@@ -12,13 +12,14 @@
 <body>
 <div th:replace="layouts/navbar :: navbar"></div>
 
-<div class="py-5 text-center text-white bg-primary fill-body" sec:authorize="hasRole('ROLE_ADMIN')">
+<div class="py-5 text-center text-white fill-body" sec:authorize="hasRole('ROLE_ADMIN')">
     <div class="container py-5">
         <div class="row py-5">
             <div class="mx-auto col-lg-10">
-                <h1 class="display-4 mb-4 "> Welcome <span sec:authentication="name"></span> </h1>
+                <h1 class="display-4 mb-4" th:text="#{home.welcome}"></h1>
+                <h1><span sec:authentication="name"></span></h1>
                 <p class="lead mb-5">
-                    Start Admin
+                    <a th:href="@{/admin/products}" href="#" class="btn btn-lg btn-outline-light mx-1 index-btn" th:text="#{home.products}"></a>
                 </p>
             </div>
         </div>

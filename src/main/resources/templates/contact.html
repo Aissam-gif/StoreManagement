@@ -28,8 +28,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="toast-body">
-      Email sent Successfly
+    <div class="toast-body" th:text="#{contact.emailsent}">
     </div>
   </div>
 </div>
@@ -39,29 +38,29 @@
     <div class="form">
       <div class="left-col">
         <img src="img/ellipse1.png" class="img1" alt="">
-        <h2>Leave us your email Our Support is active 24/7</h2>
+        <h2 th:text="#{contact.leftheader}"></h2>
         <div class="container-img">
          <img th:src="@{/images/support_call.png}">
         </div>
 
       </div>
       <div class="right-col">
-        <h2>Get In Touch With Us</h2>
+        <h2 th:text="#{contact.getintouch}"></h2>
         <form th:action="@{/sendmail}" method="POST">
           <div class="result"></div>
           <div class="form-group">
-            <input id="name" name="name" type="text" placeholder="enter your name">
+            <input id="name" name="name" type="text" th:placeholder="#{contact.name}">
           </div>
 
           <div class="form-group">
-            <input id="email" name="email" type="email" placeholder="enter your email">
+            <input id="email" name="email" type="email" th:placeholder="#{contact.email}">
           </div>
 
           <div class="form-group">
             <textarea id="message" name="message" class="form-control" tabindex="4"
-                      placeholder="enter your message" required></textarea>
+                      th:placeholder="#{contact.message}" required></textarea>
           </div>
-          <button id="submit" type="submit">Send us email</button>
+          <button id="submit" type="submit" th:text="#{contact.sendbtn}"></button>
         </form>
       </div>
     </div>

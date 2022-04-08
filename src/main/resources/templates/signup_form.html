@@ -31,7 +31,7 @@
 										<i class="fas fa-user fa-lg me-3 fa-fw"></i>
 										<div class="form-outline flex-fill mb-0">
 											<input type="text" th:field="*{firstName}" class="form-control"
-												   required minlength="2" maxlength="20" placeholder="First Name"/>
+												   required minlength="2" maxlength="20" th:placeholder="#{signup.title}"/>
 										</div>
 									</div>
 
@@ -39,7 +39,7 @@
 										<i class="fas fa-user fa-lg me-3 fa-fw"></i>
 										<div class="form-outline flex-fill mb-0">
 											<input type="text" th:field="*{lastName}" class="form-control"
-												   required minlength="2" maxlength="20" placeholder="Last Name"/>
+												   required minlength="2" maxlength="20" th:placeholder="#{signup.firstName}"/>
 										</div>
 									</div>
 
@@ -47,7 +47,7 @@
 										<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
 										<div class="form-outline flex-fill mb-0">
 											<input type="email" th:field="*{email}" class="form-control" required
-											placeholder="Email"
+												   th:placeholder="#{signup.email}"
 											/>
 										</div>
 									</div>
@@ -56,19 +56,19 @@
 										<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
 										<div class="form-outline flex-fill mb-0">
 											<input type="password" th:field="*{password}" class="form-control"
-												   required minlength="6" maxlength="20" placeholder="password"/>
+												   required minlength="6" maxlength="20" th:placeholder="#{signup.password}"/>
 										</div>
 									</div>
 
 										<div class="form-check d-flex mb-5">
 											<input type="checkbox" class="form-check-input" id="exampleCheck1">
-											<label class="form-check-label" for="exampleCheck1">
-												I agree all statements in <a href="#!">Terms of service</a>
+											<label class="form-check-label" for="exampleCheck1" th:text="#{signup.agreement}">
+											<a href="#!" th:text="#{signup.terms}"></a>
 											</label>
 										</div>
 
 									<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-										<button type="submit" class="btn btn-primary">Sign Up</button>
+										<button type="submit" class="btn btn-primary" th:text="#{signup.title}"></button>
 									</div>
 
 								</form>
