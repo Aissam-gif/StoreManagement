@@ -35,6 +35,6 @@ public class CategoryServiceImpl implements CategoryService{
         Category category= categoryRepository.getCategoryById(id);
         log.error(category.toString());
         productRepository.deleteProductsByCategory(category);
-        //categoryRepository.deleteById(id);
+        categoryRepository.deleteById(id);
     }
 }

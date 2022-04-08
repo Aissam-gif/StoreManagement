@@ -30,23 +30,10 @@ public class SpringBootEmailVerificationApplication {
 			userServiceImpl.saveRole(new Role(null,"ROLE_USER",null));
 			userServiceImpl.saveRole(new Role(null,"ROLE_ADMIN",null));
 
-			userServiceImpl.registerUser(new User(null,"said@user.com","karimo","karim","karim",null,true,null),null);
 			userServiceImpl.registerUser(new User(null,"said@admin.com","karimo","karim","karim",null,true,null),null);
 
-			userServiceImpl.addRoleToUser("said@user.com","ROLE_USER");
 			userServiceImpl.addRoleToUser("said@admin.com","ROLE_ADMIN");
 
-
-			productService.addProduct(new Product(null,"Product 1","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 1")));
-			/*productService.addProduct(new Product(null,"Product 2","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 2")));
-			productService.addProduct(new Product(null,"Product 3","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 3")));
-			productService.addProduct(new Product(null,"Product 4","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 4")));
-			productService.addProduct(new Product(null,"Product 5","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 5")));
-			productService.addProduct(new Product(null,"Product 6","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 6")));
-			productService.addProduct(new Product(null,"Product 7","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 7")));
-			productService.addProduct(new Product(null,"Product 8","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 8")));
-			productService.addProduct(new Product(null,"Product 9","Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",null, BigDecimal.valueOf(12.3),10,new Category("Ca 9")));
-*/
 
 		};
 	}

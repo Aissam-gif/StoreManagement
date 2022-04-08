@@ -71,35 +71,35 @@
                     <input th:field="*{id}" type="text" id="prod_id" class="form-control" hidden/>
                     <div class="form-outline mb-4">
                         <label class="form-label" for="prod_title">Product title</label>
-                        <input th:field="*{title}" type="text" id="prod_title" class="form-control" />
+                        <input th:field="*{title}" type="text" id="prod_title" class="form-control" required/>
                     </div>
 
                     <div class="form-outline mb-4">
                         <label class="form-label" for="prod_desc">Product Description</label>
-                        <textarea th:field="*{description}" class="form-control" id="prod_desc" rows="4"></textarea>
+                        <textarea th:field="*{description}" class="form-control" id="prod_desc" rows="4" required></textarea>
                     </div>
 
                     <div class="form-outline mb-4">
                         <label class="form-label" for="prod_img">Product Image</label>
-                        <input th:name="imagefile" type="file" id="prod_img" class="form-control" accept="image/png, image/jpeg" />
+                        <input th:name="imagefile" type="file" id="prod_img" class="form-control" accept="image/png, image/jpeg" required/>
                     </div>
 
                     <div class="form-outline mb-4">
                         <label class="form-label" for="prod_img">Product Category</label>
-                        <select class="form-control" th:field="*{category}" id="dropOperator">
+                        <select class="form-control" th:field="*{category}" id="dropOperator" required>
                             <option value="0">select category</option>
                             <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                         </select>
                     </div>
                     <div class="form-outline mb-4">
                         <label class="form-label" for="prod_price">Product Price ($)</label>
-                        <input th:field="*{price}" type="number" id="prod_price" class="form-control" step="any"/>
+                        <input th:field="*{price}" type="number" id="prod_price" class="form-control" step="any" required/>
                     </div>
 
                     <!-- Number input -->
                     <div class="form-outline mb-4">
                         <label class="form-label" for="prod_qty">Quantity</label>
-                        <input th:field="*{quantity}" type="number" id="prod_qty" class="form-control" />
+                        <input th:field="*{quantity}" type="number" id="prod_qty" class="form-control" required/>
                     </div>
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary btn-block mb-4">Save Product</button>

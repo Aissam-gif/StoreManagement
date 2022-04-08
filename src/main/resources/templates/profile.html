@@ -22,8 +22,8 @@
     <div class="row">
         <div class="col-md-3 ">
             <div class="list-group ">
-                <a th:href="@{/profile}" class="list-group-item list-group-item-action" th:classappend="${#httpServletRequest.getRequestURI().equals('/profile') ? 'active':''}">User Management</a>
-                <a th:href="@{/profile/settings}" class="list-group-item list-group-item-action" th:classappend="${#httpServletRequest.getRequestURI().equals('/profile/settings') ? 'active':''}">Settings</a>
+                <a th:href="@{/profile}" class="list-group-item list-group-item-action" th:classappend="${#httpServletRequest.getRequestURI().equals('/profile') ? 'active':''}" th:text="#{profile.muser}"></a>
+                <a th:href="@{/profile/settings}" class="list-group-item list-group-item-action" th:classappend="${#httpServletRequest.getRequestURI().equals('/profile/settings') ? 'active':''}" th:text="#{profile.settings}"></a>
             </div>
         </div>
         <div class="col-md-9">
@@ -31,7 +31,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Your Profile</h4>
+                            <h4 th:text="#{profile.titre}"></h4>
                             <hr>
                         </div>
                     </div>
@@ -40,32 +40,32 @@
                             <form th:action="@{/profile/save}" method="post" th:object="${user}">
                                 <input type="hidden" th:field="*{id}" />
                                 <div class="form-group row">
-                                    <label for="firstName" class="col-4 col-form-label">First Name</label>
+                                    <label for="firstName" class="col-4 col-form-label" th:text="#{profile.fname}"></label>
                                     <div class="col-8">
                                         <input th:value="*{firstName}" id="firstName" name="firstName" placeholder="First Name" class="form-control here" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="lastName" class="col-4 col-form-label">Last Name</label>
+                                    <label for="lastName" class="col-4 col-form-label" th:text="#{profile.lname}"></label>
                                     <div class="col-8">
                                         <input th:value="*{lastName}" id="lastName" name="lastName" placeholder="Last Name" class="form-control here" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="email" class="col-4 col-form-label">Email</label>
+                                    <label for="email" class="col-4 col-form-label" th:text="#{profile.email}"></label>
                                     <div class="col-8">
                                         <input th:value="*{email}" id="email" name="email" class="form-control here" type="email" readonly="readonly">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="password" class="col-4 col-form-label">New Password</label>
+                                    <label for="password" class="col-4 col-form-label" th:text="#{profile.pass}"></label>
                                     <div class="col-8">
                                         <input th:value="*{password}" id="password" name="password" placeholder="New Password" class="form-control here" type="password" minlength="6" maxlength="20">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="offset-4 col-8">
-                                        <button name="submit" type="submit" class="btn btn-primary">Update My Profile</button>
+                                        <button name="submit" type="submit" class="btn btn-primary" th:text="#{profile.updatebtn}"></button>
                                     </div>
                                 </div>
                             </form>
@@ -77,22 +77,23 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Account Settings</h4>
+                            <h4 th:text="#{profile.acctitre}"></h4>
                             <hr>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-2">
-                            <label class="form-label">Change Language</label>
-                            <select class="form-control" id="dropOperator">
-                                <option value="1">French</option>
-                                <option value="2">English</option>
+                            <label class="form-label" th:text="#{lang.change}"></label>
+                            <select class="form-control" id="languageDrop">
+                                <option value=""></option>
+                                <option value="fr" th:text="#{lang.fr}"></option>
+                                <option value="en" th:text="#{lang.eng}"></option>
                             </select>
                         </div>
                         <hr>
                         <div class="col-md-12 mt-2">
-                            <button type="button" class="btn btn-danger deleteBtn" th:href="@{'/profile/settings/delete/'}" data-toggle="modal" data-target="#delete-account">
-                                Delete Account <i class="fa fa-trash" aria-hidden="true"></i>
+                            <button th:text="#{profile.deleteacc}" type="button" class="btn btn-danger deleteBtn" th:href="@{'/profile/settings/delete/'}" data-toggle="modal" data-target="#delete-account">
+                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
@@ -105,14 +106,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="color: grey;">
-                Delete Account
+                <h3 th:text="#{profile.deleteacc}"></h3>
             </div>
             <div class="modal-body" style="color: grey;">
-                Are you sure you want to delete your account ?
+                <p th:text="#{profile.confirmdel}"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger btn-ok" href="">Delete</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal" th:text="#{profile.cancelbtn}"></button>
+                <a class="btn btn-danger btn-ok" href="" th:text="#{profile.deletebtn}"></a>
             </div>
         </div>
     </div>
@@ -121,6 +122,12 @@
     $('#delete-account').on('show.bs.modal', function(e) {
         console.log(e.relatedTarget.getAttribute('href'));
         $(this).find('.btn-ok').attr('href', e.relatedTarget.getAttribute('href'));
+    });
+    $("#languageDrop").change(function () {
+        var selectedOption = $('#languageDrop').val();
+        if (selectedOption != ''){
+            window.location.replace('?lang=' + selectedOption);
+        }
     });
 </script>
 </body>

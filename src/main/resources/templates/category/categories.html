@@ -13,27 +13,28 @@
 
 <div class="container text-center cat-style">
     <div class="center m-5">
-        <div class="pb-5"><h2>Product Categories</h2>
-            <button id="btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Categorie</button>
+        <div class="pb-5">
+            <h2 th:text="#{categories.title}"></h2>
+            <button id="btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" th:text="#{categories.addcatbtn}"></button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New Categorie</h5>
+                            <h5 class="modal-title" id="exampleModalLabel" th:text="#{categories.newcatmodal}"></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form th:action="@{/admin/processCategory}" method="POST">
-                        <div class="modal-body">
+                            <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Categorie:</label>
+                                    <label for="recipient-name" class="col-form-label" th:text="#{categories.catmodalname}"></label>
                                     <input type="text" name="category" class="form-control" id="recipient-name">
                                 </div>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button id="closeBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" value="Save Categorie">
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="closeBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{categories.closebtn}"></button>
+                                <input type="submit" class="btn btn-primary" th:value="#{categories.savecategory}">
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -49,8 +50,8 @@
         <table class="table align-middle mb-0 bg-white">
             <thead class="bg-light">
             <tr>
-                <th>Name</th>
-                <th>Action</th>
+                <th th:text="#{categories.thname}"></th>
+                <th th:text="#{categories.thaction}"></th>
             </tr>
             </thead>
             <tbody>
@@ -66,7 +67,7 @@
                     <td>
                         <a class="btn btn-rounded fw-bold btn-danger"
                            data-mdb-ripple-color="dark"
-                           th:href="@{'/admin/category/delete/'+ ${category.id} }">delete</a>
+                           th:href="@{'/admin/category/delete/'+ ${category.id} }" th:text="#{profile.deletebtn}"></a>
                     </td>
                 </tr>
             </th:block>
