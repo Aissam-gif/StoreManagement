@@ -12,7 +12,7 @@
     </div>
     <div class="description">
         <h2 th:text="${product.title}">Classic Peace Lily</h2>
-        <h1 th:text="${product.category.name}">Default</h1>
+        <i><h1 th:text="${product.category.name}">Default</h1></i>
         <h1 th:text="${'$' + product.price}">$18</h1>
         <h1 th:text="${'qty. '+product.quantity}">20</h1>
         <p  th:text="${product.description}">Desc</p>

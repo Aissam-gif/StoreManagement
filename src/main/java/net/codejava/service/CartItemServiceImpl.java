@@ -1,6 +1,7 @@
 package net.codejava.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.codejava.model.CartItem;
 import net.codejava.model.Product;
 import net.codejava.model.User;
@@ -9,10 +10,11 @@ import net.codejava.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Service @RequiredArgsConstructor
+@Service @RequiredArgsConstructor @Slf4j @Transactional
 public class CartItemServiceImpl implements CartItemService{
     @Autowired
     private final CartItemRepository cartItemRepository;
@@ -39,9 +41,9 @@ public class CartItemServiceImpl implements CartItemService{
     }
 
     @Override
-    public void removeProduct(Long procutId, User user) {
-        Product product = productRepository.findById(procutId)
-                .orElse(null);
+    public void removeProduct(Long productId, User user) {
+        Product product = productRepository.findProductById(productId);
+        log.error(String.valueOf(product));
         CartItem cartItem = null;
         if (product != null ) {
             cartItem = cartItemRepository.findByUserAndProduct(user, product);

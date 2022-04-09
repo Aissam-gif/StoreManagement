@@ -19,10 +19,10 @@
   <div class="column-labels">
     <label class="product-image">Image</label>
     <label class="product-details">Product</label>
-    <label class="product-price">Price</label>
-    <label class="product-quantity">Quantity</label>
+    <label class="product-price" th:text="#{cart.tabprice}"></label>
+    <label class="product-quantity" th:text="#{cart.qty}"></label>
     <label class="product-removal">Remove</label>
-    <label class="product-line-price">Total</label>
+    <label class="product-line-price" th:text="#{cart.total}">Total</label>
   </div>
   <div th:each="item: ${cartItems}" th:with="product = ${item.product}"  class="product">
     <div class="product-image">
@@ -38,7 +38,7 @@
     </div>
     <div class="product-removal">
       <button class="remove-product">
-        <a th:href="@{'/cart/remove/'+${item.id}}" href="">Remove</a>
+        <a th:href="@{'/cart/remove/'+${product.id}}" href="" th:text="#{cart.rmvbtn}"></a>
       </button>
     </div>
     <div class="product-line-price" th:text="${item.quantity}*${product.price}"></div>
@@ -67,7 +67,7 @@
   </div>
   -->
 
-  <button class="checkout">Checkout</button>
+  <button class="checkout" th:text="#{cart.check}"></button>
 
 </div>
 </body>
