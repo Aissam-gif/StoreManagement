@@ -27,14 +27,14 @@ public class SpringBootEmailVerificationApplication {
 	CommandLineRunner run(UserService userServiceImpl, CategoryService categoryService, ProductService productService) {
 
 		return args -> {
-			/*userServiceImpl.saveRole(new Role(null,"ROLE_USER",null));
+			/*
+			userServiceImpl.saveRole(new Role(null,"ROLE_USER",null));
 			userServiceImpl.saveRole(new Role(null,"ROLE_ADMIN",null));
 
 			userServiceImpl.registerUser(new User(null,"said@admin.com","karimo","karim","karim",null,true,null),null);
 
-			userServiceImpl.addRoleToUser("said@admin.com","ROLE_ADMIN");*/
-
-
+			userServiceImpl.addRoleToUser("said@admin.com","ROLE_ADMIN");
+*/
 		};
 	}
 }
