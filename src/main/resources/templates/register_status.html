@@ -11,9 +11,9 @@
 <body>
 
 	<div class="container text-center alert alert-success">
-		<h3>You have signed up successfully!</h3>
-		<p>Please check your email to verify your account.</p>		
-		<h4><a th:href="@{/login}">Click here to Login</a></h4>
+		<h3 th:text="#{register.h3}"></h3>
+		<p th:text="#{register.p}"></p>
+		<h4><a th:href="@{/login}" th:text="#{register.h4a}"></a></h4>
 	</div>
 
 

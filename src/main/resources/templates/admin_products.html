@@ -23,24 +23,24 @@
 <div class="py-5 text-center">
     <div class="container">
         <button type="button" class="btn btn-primary text-white addBtn" data-toggle="modal" data-target="#add-product"
-                th:text="#{products.addprodbtn}">
-             <i class="fa fa-plus" aria-hidden="true"></i>
+                th:text="#{adminprods.addprodbtn}">
+            <i class="fa fa-plus" aria-hidden="true"></i>
         </button>
     </div>
 </div>
 <div>
     <div class="text-center text-white">
-    <div class="container justify-content-center products-style">
-        <div class="row pb-5">
-            <th:block th:each="product: ${products}">
-                <div class="col pb-5">
-                    <div th:replace="layouts/card :: card(${product})"></div>
-                </div>
-            </th:block>
-        </div>
+        <div class="container justify-content-center products-style">
+            <div class="row pb-5">
+                <th:block th:each="product: ${products}">
+                    <div class="col pb-5">
+                        <div th:replace="layouts/card :: card(${product})"></div>
+                    </div>
+                </th:block>
+            </div>
 
+        </div>
     </div>
-</div>
 </div>
 
 
@@ -57,7 +57,7 @@
             </ul>
         </div>
 
-    </nav>
+        </nav>
     </div>
 </div>
 
@@ -65,45 +65,45 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="color: grey;">
-                Add Product
+                <p th:text="#{adminprods.addtitle}"></p>
             </div>
             <div class="modal-body" style="color: grey;">
                 <form class="eaForm" th:action="@{/admin/products/save}" method="post" th:object="${product}" enctype="multipart/form-data">
                     <input th:field="*{id}" type="text" id="prod_id" class="form-control" hidden/>
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="prod_title">Product title</label>
+                        <label class="form-label" for="prod_title" th:text="#{adminprods.prodtitle}"></label>
                         <input th:field="*{title}" type="text" id="prod_title" class="form-control" required/>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="prod_desc">Product Description</label>
+                        <label class="form-label" for="prod_desc" th:text="#{adminprods.proddesc}"></label>
                         <textarea th:field="*{description}" class="form-control" id="prod_desc" rows="4" required></textarea>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="prod_img">Product Image</label>
+                        <label class="form-label" for="prod_img" th:text="#{adminprods.prodimg}"></label>
                         <input th:name="imagefile" type="file" id="prod_img" class="form-control" accept="image/png, image/jpeg" required/>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="prod_img">Product Category</label>
+                        <label class="form-label" for="prod_img" th:text="#{adminprods.prodcat}"></label>
                         <select class="form-control" th:field="*{category}" id="dropOperator" required>
                             <option value="0">select category</option>
                             <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                         </select>
                     </div>
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="prod_price">Product Price ($)</label>
+                        <label class="form-label" for="prod_price" th:text="#{adminprods.prodprice}"></label>
                         <input th:field="*{price}" type="number" id="prod_price" class="form-control" step="any" required/>
                     </div>
 
                     <!-- Number input -->
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="prod_qty">Quantity</label>
+                        <label class="form-label" for="prod_qty" th:text="#{adminprods.prodquant}"></label>
                         <input th:field="*{quantity}" type="number" id="prod_qty" class="form-control" required/>
                     </div>
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-4">Save Product</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" th:text="#{adminprods.saveprod}"></button>
                 </form>
             </div>
         </div>
@@ -119,7 +119,7 @@
         event.preventDefault();
         var href = $(this).attr('href');
         var text = $(this).text();
-        if(text === 'Edit') {
+        if(text === 'Edit' || text==='Modifier') {
             $.get(href, function (product, status) {
                 console.log(product.category);
                 $('.eaForm #prod_id').val(product.id);

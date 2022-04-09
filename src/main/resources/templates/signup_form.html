@@ -19,7 +19,7 @@
 						<div class="row justify-content-center">
 							<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-								<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+								<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" th:text="#{signup.title}"></p>
 								<div th:if="${message}" class="alert alert-danger text-center">
 									[[${message}]]
 								</div>
@@ -31,7 +31,7 @@
 										<i class="fas fa-user fa-lg me-3 fa-fw"></i>
 										<div class="form-outline flex-fill mb-0">
 											<input type="text" th:field="*{firstName}" class="form-control"
-												   required minlength="2" maxlength="20" th:placeholder="#{signup.title}"/>
+												   required minlength="2" maxlength="20" th:placeholder="#{signup.firstName}"/>
 										</div>
 									</div>
 
@@ -39,7 +39,7 @@
 										<i class="fas fa-user fa-lg me-3 fa-fw"></i>
 										<div class="form-outline flex-fill mb-0">
 											<input type="text" th:field="*{lastName}" class="form-control"
-												   required minlength="2" maxlength="20" th:placeholder="#{signup.firstName}"/>
+												   required minlength="2" maxlength="20" th:placeholder="#{signup.lastName}"/>
 										</div>
 									</div>
 
@@ -61,10 +61,9 @@
 									</div>
 
 										<div class="form-check d-flex mb-5">
-											<input type="checkbox" class="form-check-input" id="exampleCheck1">
-											<label class="form-check-label" for="exampleCheck1" th:text="#{signup.agreement}">
-											<a href="#!" th:text="#{signup.terms}"></a>
-											</label>
+											<input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+											<label class="form-check-label" for="exampleCheck1" th:text="#{signup.agreement}"></label>
+											<a href="#" th:text="#{signup.terms}"></a>
 										</div>
 
 									<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
